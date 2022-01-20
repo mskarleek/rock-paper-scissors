@@ -1,25 +1,10 @@
+// Scores and total round moves //
+
 let playerScore = 0;
 let computerScore = 0;
-let movesLeft = 0;
+let moves = 0;
 
-const Rock = document.getElementById(rock-btn).onclick;
-const Paper = document.getElementById(paper-btn).onclick;
-const Scissors = document.getElementById(scissors-btn).onclick;
-
-Rock.addEventListener("click", function(){
-    let playerDecision = "Rock";
-    let computerDecision = computerSelection();
-});
-
-Paper.addEventListener("click", function(){
-    let playerDecision = "Paper";
-    let computerDecision = computerSelection();
-});
-
-Scissors.addEventListener("click", function(){
-    let playerDecision = "Scissors";
-    let computerDecision = computerSelection();
-});
+// Determine computer choice //
 
 function computerSelection() {
     let computerDecision = Math.floor(Math.random() * 3);
@@ -33,30 +18,85 @@ function computerSelection() {
     }
 };
 
-function gameRound(playerChoice, computerChoice) {
+// Determine player choice including the computer choice //
 
-    let playerChoice = $(playerDecision);
-    let computerChoice = $(computerDecision);
+let playerSelection = () => {
+    document.getElementById("Rock").addEventListener("click", function () {
+        playerDecision = document.getElementById("Rock").innerHTML;
+        computerDecision = computerSelection();
+    });
+    document.getElementById("Paper").addEventListener("click", function () {
+        playerDecision = document.getElementById("Paper").innerHTML;
+        computerDecision = computerSelection();
+    });
+    document.getElementById("Scissors").addEventListener("click", function () {
+        playerDecision = document.getElementById("Scissors").innerHTML;
+        computerDecision = computerSelection();
+    });
+}
 
-    if (playerChoice === computerChoice) {
-        return "It is a tie!"
-    } else if (playerChoice === Rock && computerChoice === 1) {
-        return "You lose. Paper beats Rock."
+// Announce win, lose, or tie //
+
+let playerWin = "You win. ${playerDecision} beats ${computerDecision}.";
+let computerWin = "You lose. ${computerDecision} beats ${playerDecision}.";
+let tie = "It's a tie.";
+
+// Determine winner of the round //
+
+function gameRound(playerDecision, computerDecision) {
+
+    if (playerDecision === Rock && computerDecision === 0) {
+        console.log("It's a tie.");
+        moves++;
+    } else if (playerDecision === Rock && computerDecision === 1) {
+        console.log(computerWin);
         computerScore++;
-    } else if (playerChoice === Paper && computerChoice === 2) {
-        return "You lose. Scissors beats Paper."
+        moves++;
+    } else if (playerDecision === Paper && computerDecision === 2) {
+        console.log(computerWin);
         computerScore++;
-    } else if (playerChoice == Scissors && computerChoice == 0) {
-        return "You lose. Rock beats Scissors."
+        moves++;
+    } else if (playerDecision === Scissors && computerDecision == 0) {
+        console.log(computerWin);
         computerScore++;
-    } else if (playerChoice === Rock && computerChoice === 2) {
-        return "You win. Rock beats Scissors."
+        moves++;
+    } else if (playerDecision === Rock && computerDecision === 2) {
+        console.log(playerWin);
         playerScore++;
-    } else if (playerChoice === Paper && computerChoice === 0) {
-        return "You win. Paper beats Rock."
+        moves++;
+    } else if (playerDecision === Paper && computerDecision === 0) {
+        console.log(playerWin);
         playerScore++;
-    } else if (playerChoice === Scissors && computerChoice === 1) {
-        return "You win. Scissors beats Paper."
+        moves++;
+    } else if (playerDecision === Scissors && computerDecision === 1) {
+        console.log(playerWin);
         playerScore++;
+        moves++;
     }
 }
+
+// Determine if a winner has been decided //
+
+function checkWinner() {
+    if (moves === 5) {
+        if (playerScore > computerScore) {
+            return "You win!"
+        } else if (playerScore < computerScore) {
+            return "You lose!"
+        } else if (playerScore === computerScore) {
+            return "It's a tie."
+        }
+    }
+}
+
+// Establish the game and determined the player and computer choices //
+// and whether or not the game is finished //
+
+function game() {
+    computerSelection();
+    playerSelection();
+    gameRound();
+    checkWinner();
+}
+
+game();
