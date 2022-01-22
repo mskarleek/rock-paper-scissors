@@ -4,6 +4,7 @@ let playerScore = 0;
 let computerScore = 0;
 let moves = 0;
 
+
 // Determine computer choice //
 
 function computerSelection() {
@@ -32,44 +33,43 @@ let playerSelection = () => {
     });
 }
 
-let computerDecision = computerSelection();
-let playerDecision = playerSelection();
-
 // Determine winner of the round //
 
-function gameRound(playerDecision) {
+function gameRound(playerDecision, computerDecision) {
 
     if (playerDecision === computerDecision) {
-        document.getElementById("result").innerHTML = "It's a tie!"
-    } else if (playerDecision === Rock) {
-        if (computerDecision === 1) {
+        Result.innerHTML = "It's a tie!";
+        checkWinner();
+    } else if (playerDecision === "Rock" && computerDecision === "Paper") {
             document.getElementById("result").innerHTML = "You lose! Paper beats Rock."
             computerScore++;
             moves++;
-        } else {
+            checkWinner();
+    } else if (playerDecision === "Rock" && computerDecision === "Scissors") {
             document.getElementById("result").innerHTML = "You win! Rock beats Scissors."
             playerScore++;
             moves++;
-        }
-    } else if (playerDecision === Paper) {
-        if (computerDecision === 0) {
+            checkWinner();
+    } else if (playerDecision === "Paper" && computerDecision === "Rock") {
             document.getElementById("result").innerHTML = "You win! Paper beats Rock."
             playerScore++;
             moves++;
-        } else {
+            checkWinner();
+    } else if (playerDecision === "Paper" && computerDecision === "Scissors") {
             document.getElementById("result").innerHTML = "You lose! Scissors beats Paper."
             computerScore++;
             moves++;
-        }    
-    } else if (playerDecision === Scissors) {
-        if (computerDecision === 0) {
+            checkWinner();   
+    } else if (playerDecision === "Scissors" && computerDecision === "Rock") {
             document.getElementById("result").innerHTML = "You lose! Rock beats Scissors."
             computerScore++;
             moves++;
-        } else {
+            checkWinner();
+    } else if (playerDecision === "Scissors" && computerDecision === "Paper") {
             document.getElementById("result").innerHTML = "You win! Scissors beats Paper."
             playerScore++;
             moves++;
+            checkWinner();
     }
 
 // Determine if a winner has been decided //
@@ -84,16 +84,14 @@ function checkWinner() {
             return "It's a tie."
         }
     }
-}
+}}
 
-// Establish the game and determined the player and computer choices //
-// and whether or not the game is finished //
+// Establish the player and computer choices //
+// and play a round //
 
-function game() {
-    computerSelection();
-    playerSelection();
-    gameRound();
-    checkWinner();    
-}}}
-
-game();
+document.querySelectorAll("button").forEach((item) => {
+    item.addEventListener("click", (e) => {
+        playerDecision = playerSelection();
+        computerDecision = computerSelection();
+        gameRound(playerDecision, computerDecision);
+    })})
