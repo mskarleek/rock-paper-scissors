@@ -1,7 +1,7 @@
 // Scores and total round moves //
 
-let playerScore = 1;
-let computerScore = 1;
+let playerScore = 0;
+let computerScore = 0;
 let moves = 0;
 
 // Determine computer choice //
@@ -39,32 +39,38 @@ function gameRound(playerDecision) {
         checkWinner(playerScore, computerScore);
     } else if (playerDecision === "Rock" && computerDecision === "Paper") {
             Result.innerHTML = "You lose! Paper beats Rock."
-            computerTally.innerHTML = "<b>Computer:</b> " + computerScore++;
+            computerScore += 1
+            computerTally.innerHTML = "<b>Computer:</b> " + computerScore;
             moves++;
             checkWinner(playerScore, computerScore);
     } else if (playerDecision === "Rock" && computerDecision === "Scissors") {
             Result.innerHTML = "You win! Rock beats Scissors."
-            playerTally.innerHTML = "<b>Player:</b> " + playerScore++;
+            playerScore += 1
+            playerTally.innerHTML = "<b>Player:</b> " + playerScore;
             moves++;
             checkWinner(playerScore, computerScore);
     } else if (playerDecision === "Paper" && computerDecision === "Rock") {
             Result.innerHTML = "You win! Paper beats Rock."
-            playerTally.innerHTML = "<b>Player:</b> " + playerScore++;
+            playerScore += 1
+            playerTally.innerHTML = "<b>Player:</b> " + playerScore;
             moves++;
             checkWinner(playerScore, computerScore);
     } else if (playerDecision === "Paper" && computerDecision === "Scissors") {
             Result.innerHTML = "You lose! Scissors beats Paper."
-            computerTally.innerHTML = "<b>Computer:</b> " + computerScore++;
+            computerScore += 1;
+            computerTally.innerHTML = "<b>Computer:</b> " + computerScore;
             moves++;
             checkWinner(playerScore, computerScore);
     } else if (playerDecision === "Scissors" && computerDecision === "Rock") {
             Result.innerHTML = "You lose! Rock beats Scissors."
-            computerTally.innerHTML = "<b>Computer:</b> " + computerScore++;
+            computerScore += 1
+            computerTally.innerHTML = "<b>Computer:</b> " + computerScore;
             moves++;
             checkWinner(playerScore, computerScore);
     } else if (playerDecision === "Scissors" && computerDecision === "Paper") {
             Result.innerHTML = "You win! Scissors beats Paper."
-            playerTally.innerHTML = "<b>Player:</b> " + playerScore++;
+            playerScore += 1
+            playerTally.innerHTML = "<b>Player:</b> " + playerScore;
             moves++;
             checkWinner(playerScore, computerScore);
     }
@@ -72,7 +78,7 @@ function gameRound(playerDecision) {
 // Determine if a winner has been decided //
 
 function checkWinner() {
-    if (playerScore === 6 || computerScore === 6) {
+    if (playerScore === 5 || computerScore === 5) {
         if (playerScore > computerScore) {
             gameOver.innerHTML = "You win the game! Refresh to play again."
             document.querySelectorAll("button").forEach((item) => {

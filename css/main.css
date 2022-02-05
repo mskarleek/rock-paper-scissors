@@ -3,11 +3,8 @@ body {
 }
 
 h1, h2, h3 {
-    background-color: #CA4246;
-     background-image: linear-gradient(
-          45deg,
-          rgb(0, 0, 0) 50%, 
-          rgb(84, 92, 117) 50%);
+    font-family: 'Bebas Neue', cursive;
+    background-color: black;
     background-size: 100%;
     background-repeat: repeat;
     -webkit-background-clip: text;
@@ -23,23 +20,16 @@ h1, h2, h3 {
 
 .gameContainer button {
     gap: 8px;
-    margin: 0px 0px 25px 10px;
+    margin: 0px 0px 15px 15px;
     text-align: center;
     text-decoration: none;
-    font-size: 14px;
-    color:rgb(0, 0, 0);
-    text-decoration: none;
-    background-color: rgb(84, 92, 117);
-    border: 1px solid rgb(0, 0, 0);
-    text-decoration: none;
+    font-size: 50px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    overflow: hidden;
+    outline: none;
     display: inline-block;
     cursor: pointer;
-    padding: 10px;
-    width: 75px;
-}
-
-.gameContainer button:hover {
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    border: 1px solid rgb(82, 69, 14);
+    width: 110px;
 }
