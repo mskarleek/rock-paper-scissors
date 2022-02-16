@@ -43,3 +43,11 @@ h1, h2, h3 {
 #results {
     display: none;
 }
+
+#resetButton {
+    display: none;
+}
+
+#resetButton button {
+    text-align: center;
+}

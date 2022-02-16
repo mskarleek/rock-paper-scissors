@@ -45,6 +45,7 @@ function gameRound(playerDecision) {
             moves++;
             checkWinner(playerScore, computerScore);
             resultsDisplay();
+            scoresDisplay()
     } else if (playerDecision === "Rock" && computerDecision === "Scissors") {
             Result.innerHTML = "You win! Rock beats Scissors."
             playerScore += 1
@@ -52,6 +53,7 @@ function gameRound(playerDecision) {
             moves++;
             checkWinner(playerScore, computerScore);
             resultsDisplay();
+            scoresDisplay()
     } else if (playerDecision === "Paper" && computerDecision === "Rock") {
             Result.innerHTML = "You win! Paper beats Rock."
             playerScore += 1
@@ -59,6 +61,7 @@ function gameRound(playerDecision) {
             moves++;
             checkWinner(playerScore, computerScore);
             resultsDisplay();
+            scoresDisplay()
     } else if (playerDecision === "Paper" && computerDecision === "Scissors") {
             Result.innerHTML = "You lose! Scissors beats Paper."
             computerScore += 1;
@@ -66,6 +69,7 @@ function gameRound(playerDecision) {
             moves++;
             checkWinner(playerScore, computerScore);
             resultsDisplay();
+            scoresDisplay()
     } else if (playerDecision === "Scissors" && computerDecision === "Rock") {
             Result.innerHTML = "You lose! Rock beats Scissors."
             computerScore += 1
@@ -73,6 +77,7 @@ function gameRound(playerDecision) {
             moves++;
             checkWinner(playerScore, computerScore);
             resultsDisplay();
+            scoresDisplay()
     } else if (playerDecision === "Scissors" && computerDecision === "Paper") {
             Result.innerHTML = "You win! Scissors beats Paper."
             playerScore += 1
@@ -80,6 +85,7 @@ function gameRound(playerDecision) {
             moves++;
             checkWinner(playerScore, computerScore);
             resultsDisplay();
+            scoresDisplay()
     }
 
 // Display results //
@@ -89,24 +95,41 @@ function resultsDisplay() {
     results.style.display = "block";
   }
 
+// Display scores //
+
+function scoresDisplay() {
+    var currentScores = document.getElementById("currentScores");
+    currentScores.style.display = "block";
+  }
+
+// Display reset //
+
+function resetDisplay() {
+    var resetButton = document.getElementById("resetButton");
+    resetButton.style.display = "block";
+  }
+
 // Determine if a winner has been decided //
 
 function checkWinner() {
     if (playerScore === 5 || computerScore === 5) {
         if (playerScore > computerScore) {
-            gameOver.innerHTML = "You win the game! Refresh to play again."
+            gameOver.innerHTML = "You win the game! Reset the game to play again."
             document.querySelectorAll("input").forEach((item) => {
                 item.disabled = true;
+                resetDisplay();
               });
         } else if (playerScore < computerScore) {
-            gameOver.innerHTML = "You lose the game! Refresh to play again."
+            gameOver.innerHTML = "You lose the game! Reset the game to play again."
             document.querySelectorAll("input").forEach((item) => {
                 item.disabled = true;
+                resetDisplay();
               });
         } else if (playerScore === computerScore) {
-            gameOver.innerHTML = "It's a tie! Refresh to play again."
+            gameOver.innerHTML = "It's a tie! Reset the game to play again."
             document.querySelectorAll("input").forEach((item) => {
                 item.disabled = true;
+                resetDisplay();
               });
         }
     }
@@ -121,3 +144,21 @@ document.querySelectorAll("input").forEach((item) => {
         computerDecision = computerSelection();
         gameRound(playerDecision, computerDecision);
     })})
+
+
+// Reset game //
+
+function reset() {
+    playerScore = 0;
+    computerScore = 0;
+    moves = 0;
+    resetButton.style.display = "none";
+    results.style.display = "none";
+    currentScores.style.display = "none";
+    gameOver.innerHTML = "";
+    playerTally.innerHTML = "";
+    computerTally.innerHTML = "";
+    document.querySelectorAll("input").forEach((item) => {
+        item.disabled = false;
+    });
+}
