@@ -68,6 +68,7 @@ h2 {
     background-color: black;
     background-size: 100%;
     background-repeat: repeat;
+    margin-top: 0px;
 }
 
 .gameContainer {
@@ -99,6 +100,7 @@ h2 {
 
 #resetButton {
     display: none;
+    margin-bottom: 20px;
 }
 
 #resetButton button {
