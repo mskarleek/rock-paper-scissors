@@ -51,3 +51,7 @@ h1, h2, h3 {
 #resetButton button {
     text-align: center;
 }
+
+#currentScores {
+    display: none;
+}
